@@ -14,7 +14,6 @@ type ApplianceNat struct {
 }
 
 func (vtm VirtualTrafficManager) GetApplianceNat() (*ApplianceNat, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/appliance/nat")
 	data, ok := conn.get()
 	if ok != true {

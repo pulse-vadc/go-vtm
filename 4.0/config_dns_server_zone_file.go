@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListDnsServerZoneFiles() (*[]string, *vtmErrorR
 }
 
 func (vtm VirtualTrafficManager) GetDnsServerZoneFile(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetDnsServerZoneFile(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/dns_server/zone_files/" + name)
 	data, ok := conn.get()
 	if ok != true {

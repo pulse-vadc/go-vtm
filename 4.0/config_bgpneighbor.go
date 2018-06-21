@@ -14,7 +14,9 @@ type Bgpneighbor struct {
 }
 
 func (vtm VirtualTrafficManager) GetBgpneighbor(name string) (*Bgpneighbor, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetBgpneighbor(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/bgpneighbors/" + name)
 	data, ok := conn.get()
 	if ok != true {

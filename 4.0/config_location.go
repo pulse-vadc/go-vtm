@@ -14,7 +14,9 @@ type Location struct {
 }
 
 func (vtm VirtualTrafficManager) GetLocation(name string) (*Location, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetLocation(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/locations/" + name)
 	data, ok := conn.get()
 	if ok != true {

@@ -14,7 +14,9 @@ type Bandwidth struct {
 }
 
 func (vtm VirtualTrafficManager) GetBandwidth(name string) (*Bandwidth, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetBandwidth(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/bandwidth/" + name)
 	data, ok := conn.get()
 	if ok != true {

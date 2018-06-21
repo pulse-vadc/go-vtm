@@ -12,11 +12,11 @@ type CacheIpSessionCacheStatistics struct {
 	Statistics struct {
 		Entries    *int `json:"entries"`
 		Misses     *int `json:"misses"`
-		EntriesMax *int `json:"entries_max"`
-		HitRate    *int `json:"hit_rate"`
-		Oldest     *int `json:"oldest"`
 		Hits       *int `json:"hits"`
+		HitRate    *int `json:"hit_rate"`
+		EntriesMax *int `json:"entries_max"`
 		Lookups    *int `json:"lookups"`
+		Oldest     *int `json:"oldest"`
 	} `json:"statistics"`
 }
 

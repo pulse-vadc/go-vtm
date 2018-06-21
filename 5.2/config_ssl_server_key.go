@@ -14,7 +14,9 @@ type SslServerKey struct {
 }
 
 func (vtm VirtualTrafficManager) GetSslServerKey(name string) (*SslServerKey, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetSslServerKey(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/ssl/server_keys/" + name)
 	data, ok := conn.get()
 	if ok != true {

@@ -35,6 +35,18 @@ func TestGetVirtualServer(t *testing.T) {
 	} else if err.ErrorId != "resource.not_found" {
 		t.Errorf("Incorrect error ID (%s) returned", err.ErrorId)
 	}
+
+	// Test that getting a VS with an empty name param (ie. "") causes a panic
+	defer func() {
+		if r := recover(); r != nil {
+			if r != "Provided an empty \"name\" parameter to VirtualTrafficManager.GetVirtualServer(name)" {
+				t.Errorf("Failed to panic when an empty name was provided")
+			}
+		} else {
+			t.Errorf("Failed to panic when an empty name was provided")
+		}
+	}()
+	testTm.GetVirtualServer("")
 }
 
 func TestListVirtualServers(t *testing.T) {

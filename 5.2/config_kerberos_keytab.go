@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListKerberosKeytabs() (*[]string, *vtmErrorResp
 }
 
 func (vtm VirtualTrafficManager) GetKerberosKeytab(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetKerberosKeytab(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/kerberos/keytabs/" + name)
 	data, ok := conn.get()
 	if ok != true {

@@ -14,7 +14,9 @@ type TrafficManager struct {
 }
 
 func (vtm VirtualTrafficManager) GetTrafficManager(name string) (*TrafficManager, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetTrafficManager(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/traffic_managers/" + name)
 	data, ok := conn.get()
 	if ok != true {

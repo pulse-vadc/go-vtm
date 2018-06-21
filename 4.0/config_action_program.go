@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListActionPrograms() (*[]string, *vtmErrorRespo
 }
 
 func (vtm VirtualTrafficManager) GetActionProgram(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetActionProgram(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/action_programs/" + name)
 	data, ok := conn.get()
 	if ok != true {

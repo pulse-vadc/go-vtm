@@ -14,7 +14,9 @@ type UserAuthenticator struct {
 }
 
 func (vtm VirtualTrafficManager) GetUserAuthenticator(name string) (*UserAuthenticator, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetUserAuthenticator(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/user_authenticators/" + name)
 	data, ok := conn.get()
 	if ok != true {

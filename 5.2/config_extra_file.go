@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListExtraFiles() (*[]string, *vtmErrorResponse)
 }
 
 func (vtm VirtualTrafficManager) GetExtraFile(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetExtraFile(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/extra_files/" + name)
 	data, ok := conn.get()
 	if ok != true {

@@ -10,22 +10,22 @@ import (
 
 type NodesNodeStatistics struct {
 	Statistics struct {
-		CurrentRequests *int    `json:"current_requests"`
-		NewConn         *int    `json:"new_conn"`
-		CurrentConn     *int    `json:"current_conn"`
-		Errors          *int    `json:"errors"`
-		BytesFromNodeLo *int    `json:"bytes_from_node_lo"`
-		PooledConn      *int    `json:"pooled_conn"`
-		State           *string `json:"state"`
 		ResponseMean    *int    `json:"response_mean"`
-		Port            *int    `json:"port"`
-		TotalConn       *int    `json:"total_conn"`
-		BytesToNodeLo   *int    `json:"bytes_to_node_lo"`
+		PooledConn      *int    `json:"pooled_conn"`
+		CurrentRequests *int    `json:"current_requests"`
 		Failures        *int    `json:"failures"`
-		ResponseMin     *int    `json:"response_min"`
-		ResponseMax     *int    `json:"response_max"`
 		BytesFromNodeHi *int    `json:"bytes_from_node_hi"`
 		BytesToNodeHi   *int    `json:"bytes_to_node_hi"`
+		TotalConn       *int    `json:"total_conn"`
+		ResponseMin     *int    `json:"response_min"`
+		CurrentConn     *int    `json:"current_conn"`
+		Port            *int    `json:"port"`
+		Errors          *int    `json:"errors"`
+		NewConn         *int    `json:"new_conn"`
+		State           *string `json:"state"`
+		BytesFromNodeLo *int    `json:"bytes_from_node_lo"`
+		BytesToNodeLo   *int    `json:"bytes_to_node_lo"`
+		ResponseMax     *int    `json:"response_max"`
 	} `json:"statistics"`
 }
 

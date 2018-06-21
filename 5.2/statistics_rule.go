@@ -10,13 +10,13 @@ import (
 
 type RuleStatistics struct {
 	Statistics struct {
-		ExecutionTimeWarnings *int `json:"execution_time_warnings"`
+		Executions            *int `json:"executions"`
 		Retries               *int `json:"retries"`
 		PoolSelect            *int `json:"pool_select"`
-		Aborts                *int `json:"aborts"`
 		Discards              *int `json:"discards"`
-		Executions            *int `json:"executions"`
 		Responds              *int `json:"responds"`
+		Aborts                *int `json:"aborts"`
+		ExecutionTimeWarnings *int `json:"execution_time_warnings"`
 	} `json:"statistics"`
 }
 

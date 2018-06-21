@@ -14,7 +14,9 @@ type Protection struct {
 }
 
 func (vtm VirtualTrafficManager) GetProtection(name string) (*Protection, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetProtection(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/protection/" + name)
 	data, ok := conn.get()
 	if ok != true {

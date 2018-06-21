@@ -10,32 +10,32 @@ import (
 
 type NodesPerPoolNodeStatistics struct {
 	Statistics struct {
-		NewConn            *int    `json:"new_conn"`
+		PooledConn         *int    `json:"pooled_conn"`
+		Failures           *int    `json:"failures"`
+		NodePort           *int    `json:"node_port"`
+		BytesToNodeHi      *int    `json:"bytes_to_node_hi"`
+		BytesFromNodeHi    *int    `json:"bytes_from_node_hi"`
+		ResponseMin        *int    `json:"response_min"`
+		ResponseMax        *int    `json:"response_max"`
+		Errors             *int    `json:"errors"`
+		State              *string `json:"state"`
+		BytesFromNodeLo    *int    `json:"bytes_from_node_lo"`
+		PktsToNodeLo       *int    `json:"pkts_to_node_lo"`
+		ResponseMean       *int    `json:"response_mean"`
+		PktsFromNodeLo     *int    `json:"pkts_from_node_lo"`
+		CurrentRequests    *int    `json:"current_requests"`
+		BytesFromNode      *int    `json:"bytes_from_node"`
+		IdleConns          *int    `json:"idle_conns"`
+		L4StatelessBuckets *int    `json:"l4_stateless_buckets"`
+		TotalConn          *int    `json:"total_conn"`
+		PktsToNodeHi       *int    `json:"pkts_to_node_hi"`
 		CurrentConn        *int    `json:"current_conn"`
 		PktsFromNodeHi     *int    `json:"pkts_from_node_hi"`
-		PooledConn         *int    `json:"pooled_conn"`
-		PktsToNodeHi       *int    `json:"pkts_to_node_hi"`
-		PktsToNode         *int    `json:"pkts_to_node"`
-		ResponseMean       *int    `json:"response_mean"`
-		ResponseMax        *int    `json:"response_max"`
-		BytesToNodeHi      *int    `json:"bytes_to_node_hi"`
-		BytesFromNode      *int    `json:"bytes_from_node"`
-		L4StatelessBuckets *int    `json:"l4_stateless_buckets"`
-		Errors             *int    `json:"errors"`
-		BytesFromNodeLo    *int    `json:"bytes_from_node_lo"`
-		CurrentRequests    *int    `json:"current_requests"`
-		State              *string `json:"state"`
-		BytesFromNodeHi    *int    `json:"bytes_from_node_hi"`
+		NewConn            *int    `json:"new_conn"`
 		PktsFromNode       *int    `json:"pkts_from_node"`
-		PktsFromNodeLo     *int    `json:"pkts_from_node_lo"`
-		NodePort           *int    `json:"node_port"`
+		PktsToNode         *int    `json:"pkts_to_node"`
 		BytesToNodeLo      *int    `json:"bytes_to_node_lo"`
 		BytesToNode        *int    `json:"bytes_to_node"`
-		Failures           *int    `json:"failures"`
-		ResponseMin        *int    `json:"response_min"`
-		PktsToNodeLo       *int    `json:"pkts_to_node_lo"`
-		IdleConns          *int    `json:"idle_conns"`
-		TotalConn          *int    `json:"total_conn"`
 	} `json:"statistics"`
 }
 

@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListLicenseKeys() (*[]string, *vtmErrorResponse
 }
 
 func (vtm VirtualTrafficManager) GetLicenseKey(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetLicenseKey(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/license_keys/" + name)
 	data, ok := conn.get()
 	if ok != true {

@@ -14,7 +14,9 @@ type SamlTrustedidp struct {
 }
 
 func (vtm VirtualTrafficManager) GetSamlTrustedidp(name string) (*SamlTrustedidp, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetSamlTrustedidp(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/saml/trustedidps/" + name)
 	data, ok := conn.get()
 	if ok != true {

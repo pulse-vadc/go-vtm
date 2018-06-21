@@ -14,7 +14,9 @@ type EventType struct {
 }
 
 func (vtm VirtualTrafficManager) GetEventType(name string) (*EventType, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetEventType(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/event_types/" + name)
 	data, ok := conn.get()
 	if ok != true {

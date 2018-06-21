@@ -14,7 +14,9 @@ type GlbService struct {
 }
 
 func (vtm VirtualTrafficManager) GetGlbService(name string) (*GlbService, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetGlbService(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/glb_services/" + name)
 	data, ok := conn.get()
 	if ok != true {

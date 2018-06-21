@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListMonitorScripts() (*[]string, *vtmErrorRespo
 }
 
 func (vtm VirtualTrafficManager) GetMonitorScript(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetMonitorScript(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/monitor_scripts/" + name)
 	data, ok := conn.get()
 	if ok != true {

@@ -10,31 +10,31 @@ import (
 
 type PoolStatistics struct {
 	Statistics struct {
-		BwLimitBytesDropLo *int    `json:"bw_limit_bytes_drop_lo"`
-		Nodes              *int    `json:"nodes"`
-		QueueTimeouts      *int    `json:"queue_timeouts"`
-		Persistence        *string `json:"persistence"`
-		BwLimitPktsDrop    *int    `json:"bw_limit_pkts_drop"`
-		TotalConn          *int    `json:"total_conn"`
-		MeanQueueTime      *int    `json:"mean_queue_time"`
-		BytesOut           *int    `json:"bytes_out"`
-		Algorithm          *string `json:"algorithm"`
-		BytesInHi          *int    `json:"bytes_in_hi"`
-		BytesIn            *int    `json:"bytes_in"`
-		SessionMigrated    *int    `json:"session_migrated"`
-		MaxQueueTime       *int    `json:"max_queue_time"`
-		BytesOutHi         *int    `json:"bytes_out_hi"`
-		BwLimitPktsDropLo  *int    `json:"bw_limit_pkts_drop_lo"`
-		BwLimitPktsDropHi  *int    `json:"bw_limit_pkts_drop_hi"`
-		BytesOutLo         *int    `json:"bytes_out_lo"`
-		Draining           *int    `json:"draining"`
-		Disabled           *int    `json:"disabled"`
-		MinQueueTime       *int    `json:"min_queue_time"`
-		ConnsQueued        *int    `json:"conns_queued"`
-		State              *string `json:"state"`
 		BwLimitBytesDropHi *int    `json:"bw_limit_bytes_drop_hi"`
-		BwLimitBytesDrop   *int    `json:"bw_limit_bytes_drop"`
+		TotalConn          *int    `json:"total_conn"`
+		BytesOut           *int    `json:"bytes_out"`
+		Persistence        *string `json:"persistence"`
+		Draining           *int    `json:"draining"`
+		BwLimitPktsDropLo  *int    `json:"bw_limit_pkts_drop_lo"`
+		BytesOutLo         *int    `json:"bytes_out_lo"`
+		BwLimitPktsDropHi  *int    `json:"bw_limit_pkts_drop_hi"`
+		State              *string `json:"state"`
+		MaxQueueTime       *int    `json:"max_queue_time"`
 		BytesInLo          *int    `json:"bytes_in_lo"`
+		MinQueueTime       *int    `json:"min_queue_time"`
+		Nodes              *int    `json:"nodes"`
+		MeanQueueTime      *int    `json:"mean_queue_time"`
+		BytesOutHi         *int    `json:"bytes_out_hi"`
+		QueueTimeouts      *int    `json:"queue_timeouts"`
+		Disabled           *int    `json:"disabled"`
+		BytesInHi          *int    `json:"bytes_in_hi"`
+		BwLimitBytesDropLo *int    `json:"bw_limit_bytes_drop_lo"`
+		SessionMigrated    *int    `json:"session_migrated"`
+		BytesIn            *int    `json:"bytes_in"`
+		ConnsQueued        *int    `json:"conns_queued"`
+		Algorithm          *string `json:"algorithm"`
+		BwLimitBytesDrop   *int    `json:"bw_limit_bytes_drop"`
+		BwLimitPktsDrop    *int    `json:"bw_limit_pkts_drop"`
 	} `json:"statistics"`
 }
 

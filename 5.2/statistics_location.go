@@ -10,8 +10,8 @@ import (
 
 type LocationStatistics struct {
 	Statistics struct {
-		Responses *int `json:"responses"`
 		Load      *int `json:"load"`
+		Responses *int `json:"responses"`
 	} `json:"statistics"`
 }
 

@@ -14,7 +14,9 @@ type Persistence struct {
 }
 
 func (vtm VirtualTrafficManager) GetPersistence(name string) (*Persistence, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetPersistence(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/persistence/" + name)
 	data, ok := conn.get()
 	if ok != true {

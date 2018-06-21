@@ -10,27 +10,27 @@ import (
 
 type CacheWebCacheStatistics struct {
 	Statistics struct {
-		HitsHi                   *int `json:"hits_hi"`
-		LookupsHi                *int `json:"lookups_hi"`
+		HitsLo                   *int `json:"hits_lo"`
 		LookupsLo                *int `json:"lookups_lo"`
-		MemMaximum               *int `json:"mem_maximum"`
-		HitRate                  *int `json:"hit_rate"`
-		Misses                   *int `json:"misses"`
+		UrlStoreSize             *int `json:"url_store_size"`
+		Entries                  *int `json:"entries"`
+		LookupsHi                *int `json:"lookups_hi"`
+		UrlStoreAllocated        *int `json:"url_store_allocated"`
 		MissesHi                 *int `json:"misses_hi"`
 		UrlStoreTotalFailures    *int `json:"url_store_total_failures"`
-		Entries                  *int `json:"entries"`
-		HitsLo                   *int `json:"hits_lo"`
+		HitsHi                   *int `json:"hits_hi"`
 		Lookups                  *int `json:"lookups"`
-		UrlStoreTotalAllocations *int `json:"url_store_total_allocations"`
-		UrlStoreSize             *int `json:"url_store_size"`
-		MissesLo                 *int `json:"misses_lo"`
-		Oldest                   *int `json:"oldest"`
-		UrlStoreFree             *int `json:"url_store_free"`
-		UrlStoreAllocated        *int `json:"url_store_allocated"`
 		MaxEntries               *int `json:"max_entries"`
-		UrlStoreTotalFrees       *int `json:"url_store_total_frees"`
-		Hits                     *int `json:"hits"`
 		MemUsed                  *int `json:"mem_used"`
+		MissesLo                 *int `json:"misses_lo"`
+		UrlStoreFree             *int `json:"url_store_free"`
+		UrlStoreTotalAllocations *int `json:"url_store_total_allocations"`
+		Misses                   *int `json:"misses"`
+		UrlStoreTotalFrees       *int `json:"url_store_total_frees"`
+		Oldest                   *int `json:"oldest"`
+		HitRate                  *int `json:"hit_rate"`
+		Hits                     *int `json:"hits"`
+		MemMaximum               *int `json:"mem_maximum"`
 	} `json:"statistics"`
 }
 

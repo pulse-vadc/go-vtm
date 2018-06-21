@@ -10,11 +10,11 @@ import (
 
 type PerLocationServiceStatistics struct {
 	Statistics struct {
-		State         *string `json:"state"`
-		Load          *int    `json:"load"`
-		FrontendState *string `json:"frontend_state"`
-		Draining      *string `json:"draining"`
 		MonitorState  *string `json:"monitor_state"`
+		FrontendState *string `json:"frontend_state"`
+		State         *string `json:"state"`
+		Draining      *string `json:"draining"`
+		Load          *int    `json:"load"`
 		Responses     *int    `json:"responses"`
 	} `json:"statistics"`
 }

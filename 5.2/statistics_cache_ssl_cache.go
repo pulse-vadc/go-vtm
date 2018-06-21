@@ -10,13 +10,13 @@ import (
 
 type CacheSslCacheStatistics struct {
 	Statistics struct {
+		Misses     *int `json:"misses"`
 		Lookups    *int `json:"lookups"`
-		HitRate    *int `json:"hit_rate"`
+		EntriesMax *int `json:"entries_max"`
+		Entries    *int `json:"entries"`
 		Oldest     *int `json:"oldest"`
 		Hits       *int `json:"hits"`
-		Misses     *int `json:"misses"`
-		Entries    *int `json:"entries"`
-		EntriesMax *int `json:"entries_max"`
+		HitRate    *int `json:"hit_rate"`
 	} `json:"statistics"`
 }
 

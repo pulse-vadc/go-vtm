@@ -10,18 +10,18 @@ import (
 
 type ListenIpStatistics struct {
 	Statistics struct {
-		MaxConn         *int `json:"max_conn"`
-		BytesIn         *int `json:"bytes_in"`
-		BytesOutHi      *int `json:"bytes_out_hi"`
-		CurrentConn     *int `json:"current_conn"`
 		BytesOut        *int `json:"bytes_out"`
-		BytesOutLo      *int `json:"bytes_out_lo"`
-		BytesInLo       *int `json:"bytes_in_lo"`
-		TotalConn       *int `json:"total_conn"`
-		BytesInHi       *int `json:"bytes_in_hi"`
 		TotalRequestsHi *int `json:"total_requests_hi"`
 		TotalRequests   *int `json:"total_requests"`
+		MaxConn         *int `json:"max_conn"`
+		BytesOutHi      *int `json:"bytes_out_hi"`
+		TotalConn       *int `json:"total_conn"`
+		BytesInHi       *int `json:"bytes_in_hi"`
+		BytesOutLo      *int `json:"bytes_out_lo"`
+		CurrentConn     *int `json:"current_conn"`
 		TotalRequestsLo *int `json:"total_requests_lo"`
+		BytesInLo       *int `json:"bytes_in_lo"`
+		BytesIn         *int `json:"bytes_in"`
 	} `json:"statistics"`
 }
 

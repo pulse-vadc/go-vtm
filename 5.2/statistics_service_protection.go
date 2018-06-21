@@ -10,15 +10,15 @@ import (
 
 type ServiceProtectionStatistics struct {
 	Statistics struct {
-		RefusalRfc2396  *int `json:"refusal_rfc2396"`
-		RefusalConc1Ip  *int `json:"refusal_conc1_ip"`
-		RefusalBinary   *int `json:"refusal_binary"`
-		TotalRefusal    *int `json:"total_refusal"`
 		RefusalIp       *int `json:"refusal_ip"`
+		RefusalConc1Ip  *int `json:"refusal_conc1_ip"`
 		RefusalConc10Ip *int `json:"refusal_conc10_ip"`
 		LastRefusalTime *int `json:"last_refusal_time"`
-		RefusalSize     *int `json:"refusal_size"`
 		RefusalConnRate *int `json:"refusal_conn_rate"`
+		RefusalBinary   *int `json:"refusal_binary"`
+		TotalRefusal    *int `json:"total_refusal"`
+		RefusalRfc2396  *int `json:"refusal_rfc2396"`
+		RefusalSize     *int `json:"refusal_size"`
 	} `json:"statistics"`
 }
 

@@ -14,7 +14,9 @@ type RuleAuthenticator struct {
 }
 
 func (vtm VirtualTrafficManager) GetRuleAuthenticator(name string) (*RuleAuthenticator, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetRuleAuthenticator(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/rule_authenticators/" + name)
 	data, ok := conn.get()
 	if ok != true {

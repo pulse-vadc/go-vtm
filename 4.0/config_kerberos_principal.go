@@ -14,7 +14,9 @@ type KerberosPrincipal struct {
 }
 
 func (vtm VirtualTrafficManager) GetKerberosPrincipal(name string) (*KerberosPrincipal, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetKerberosPrincipal(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/kerberos/principals/" + name)
 	data, ok := conn.get()
 	if ok != true {
