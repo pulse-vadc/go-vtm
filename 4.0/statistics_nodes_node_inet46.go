@@ -10,25 +10,25 @@ import (
 
 type NodesNodeInet46Statistics struct {
 	Statistics struct {
-		TotalConn       *int    `json:"total_conn"`
-		IdleConns       *int    `json:"idle_conns"`
-		Port            *int    `json:"port"`
-		BytesToNodeLo   *int    `json:"bytes_to_node_lo"`
-		BytesFromNodeHi *int    `json:"bytes_from_node_hi"`
-		ResponseMean    *int    `json:"response_mean"`
-		NewConn         *int    `json:"new_conn"`
-		BytesToNode     *int    `json:"bytes_to_node"`
 		BytesFromNode   *int    `json:"bytes_from_node"`
+		BytesFromNodeHi *int    `json:"bytes_from_node_hi"`
 		BytesFromNodeLo *int    `json:"bytes_from_node_lo"`
-		State           *string `json:"state"`
-		Failures        *int    `json:"failures"`
-		ResponseMin     *int    `json:"response_min"`
-		CurrentRequests *int    `json:"current_requests"`
+		BytesToNode     *int    `json:"bytes_to_node"`
 		BytesToNodeHi   *int    `json:"bytes_to_node_hi"`
-		Errors          *int    `json:"errors"`
-		ResponseMax     *int    `json:"response_max"`
+		BytesToNodeLo   *int    `json:"bytes_to_node_lo"`
 		CurrentConn     *int    `json:"current_conn"`
+		CurrentRequests *int    `json:"current_requests"`
+		Errors          *int    `json:"errors"`
+		Failures        *int    `json:"failures"`
+		IdleConns       *int    `json:"idle_conns"`
+		NewConn         *int    `json:"new_conn"`
 		PooledConn      *int    `json:"pooled_conn"`
+		Port            *int    `json:"port"`
+		ResponseMax     *int    `json:"response_max"`
+		ResponseMean    *int    `json:"response_mean"`
+		ResponseMin     *int    `json:"response_min"`
+		State           *string `json:"state"`
+		TotalConn       *int    `json:"total_conn"`
 	} `json:"statistics"`
 }
 

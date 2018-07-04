@@ -11,11 +11,11 @@ import (
 type CacheUniSessionCacheStatistics struct {
 	Statistics struct {
 		Entries    *int `json:"entries"`
-		Misses     *int `json:"misses"`
-		Hits       *int `json:"hits"`
-		HitRate    *int `json:"hit_rate"`
 		EntriesMax *int `json:"entries_max"`
+		HitRate    *int `json:"hit_rate"`
+		Hits       *int `json:"hits"`
 		Lookups    *int `json:"lookups"`
+		Misses     *int `json:"misses"`
 		Oldest     *int `json:"oldest"`
 	} `json:"statistics"`
 }

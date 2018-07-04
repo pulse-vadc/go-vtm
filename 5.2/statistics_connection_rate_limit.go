@@ -10,12 +10,12 @@ import (
 
 type ConnectionRateLimitStatistics struct {
 	Statistics struct {
-		ConnsLeft     *int `json:"conns_left"`
-		MaxRatePerSec *int `json:"max_rate_per_sec"`
-		MaxRatePerMin *int `json:"max_rate_per_min"`
-		Dropped       *int `json:"dropped"`
-		CurrentRate   *int `json:"current_rate"`
 		ConnsEntered  *int `json:"conns_entered"`
+		ConnsLeft     *int `json:"conns_left"`
+		CurrentRate   *int `json:"current_rate"`
+		Dropped       *int `json:"dropped"`
+		MaxRatePerMin *int `json:"max_rate_per_min"`
+		MaxRatePerSec *int `json:"max_rate_per_sec"`
 		QueueLength   *int `json:"queue_length"`
 	} `json:"statistics"`
 }

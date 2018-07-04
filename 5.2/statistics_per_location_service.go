@@ -12,8 +12,8 @@ type PerLocationServiceStatistics struct {
 	Statistics struct {
 		Draining      *string `json:"draining"`
 		FrontendState *string `json:"frontend_state"`
-		MonitorState  *string `json:"monitor_state"`
 		Load          *int    `json:"load"`
+		MonitorState  *string `json:"monitor_state"`
 		Responses     *int    `json:"responses"`
 		State         *string `json:"state"`
 	} `json:"statistics"`

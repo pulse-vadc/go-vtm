@@ -10,16 +10,16 @@ import (
 
 type TrafficIpsIpGatewayStatistics struct {
 	Statistics struct {
-		NumberRaised         *int `json:"number_raised"`
 		ArpMessage           *int `json:"arp_message"`
-		GatewayPingResponses *int `json:"gateway_ping_responses"`
-		PingResponseErrors   *int `json:"ping_response_errors"`
 		GatewayPingRequests  *int `json:"gateway_ping_requests"`
+		GatewayPingResponses *int `json:"gateway_ping_responses"`
 		NodePingRequests     *int `json:"node_ping_requests"`
-		NumberInet46         *int `json:"number_inet46"`
 		NodePingResponses    *int `json:"node_ping_responses"`
-		NumberRaisedInet46   *int `json:"number_raised_inet46"`
 		Number               *int `json:"number"`
+		NumberInet46         *int `json:"number_inet46"`
+		NumberRaised         *int `json:"number_raised"`
+		NumberRaisedInet46   *int `json:"number_raised_inet46"`
+		PingResponseErrors   *int `json:"ping_response_errors"`
 	} `json:"statistics"`
 }
 

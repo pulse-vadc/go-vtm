@@ -10,27 +10,27 @@ import (
 
 type CacheWebCacheStatistics struct {
 	Statistics struct {
-		HitsLo                   *int `json:"hits_lo"`
-		LookupsLo                *int `json:"lookups_lo"`
-		UrlStoreSize             *int `json:"url_store_size"`
 		Entries                  *int `json:"entries"`
-		LookupsHi                *int `json:"lookups_hi"`
-		UrlStoreAllocated        *int `json:"url_store_allocated"`
-		MissesHi                 *int `json:"misses_hi"`
-		UrlStoreTotalFailures    *int `json:"url_store_total_failures"`
-		HitsHi                   *int `json:"hits_hi"`
-		Lookups                  *int `json:"lookups"`
-		MaxEntries               *int `json:"max_entries"`
-		MemUsed                  *int `json:"mem_used"`
-		MissesLo                 *int `json:"misses_lo"`
-		UrlStoreFree             *int `json:"url_store_free"`
-		UrlStoreTotalAllocations *int `json:"url_store_total_allocations"`
-		Misses                   *int `json:"misses"`
-		UrlStoreTotalFrees       *int `json:"url_store_total_frees"`
-		Oldest                   *int `json:"oldest"`
 		HitRate                  *int `json:"hit_rate"`
 		Hits                     *int `json:"hits"`
+		HitsHi                   *int `json:"hits_hi"`
+		HitsLo                   *int `json:"hits_lo"`
+		Lookups                  *int `json:"lookups"`
+		LookupsHi                *int `json:"lookups_hi"`
+		LookupsLo                *int `json:"lookups_lo"`
+		MaxEntries               *int `json:"max_entries"`
 		MemMaximum               *int `json:"mem_maximum"`
+		MemUsed                  *int `json:"mem_used"`
+		Misses                   *int `json:"misses"`
+		MissesHi                 *int `json:"misses_hi"`
+		MissesLo                 *int `json:"misses_lo"`
+		Oldest                   *int `json:"oldest"`
+		UrlStoreAllocated        *int `json:"url_store_allocated"`
+		UrlStoreFree             *int `json:"url_store_free"`
+		UrlStoreSize             *int `json:"url_store_size"`
+		UrlStoreTotalAllocations *int `json:"url_store_total_allocations"`
+		UrlStoreTotalFailures    *int `json:"url_store_total_failures"`
+		UrlStoreTotalFrees       *int `json:"url_store_total_frees"`
 	} `json:"statistics"`
 }
 

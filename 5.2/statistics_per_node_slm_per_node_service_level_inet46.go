@@ -10,12 +10,12 @@ import (
 
 type PerNodeSlmPerNodeServiceLevelInet46Statistics struct {
 	Statistics struct {
+		NodePort     *int `json:"node_port"`
 		ResponseMax  *int `json:"response_max"`
 		ResponseMean *int `json:"response_mean"`
-		TotalNonConf *int `json:"total_non_conf"`
-		NodePort     *int `json:"node_port"`
-		TotalConn    *int `json:"total_conn"`
 		ResponseMin  *int `json:"response_min"`
+		TotalConn    *int `json:"total_conn"`
+		TotalNonConf *int `json:"total_non_conf"`
 	} `json:"statistics"`
 }
 
