@@ -10,17 +10,17 @@ import (
 
 type NetworkInterfaceStatistics struct {
 	Statistics struct {
+		Collisions *int `json:"collisions"`
+		RxBytes    *int `json:"rx_bytes"`
+		RxBytesHi  *int `json:"rx_bytes_hi"`
+		RxBytesLo  *int `json:"rx_bytes_lo"`
+		RxErrors   *int `json:"rx_errors"`
+		RxPackets  *int `json:"rx_packets"`
 		TxBytes    *int `json:"tx_bytes"`
 		TxBytesHi  *int `json:"tx_bytes_hi"`
-		TxErrors   *int `json:"tx_errors"`
-		RxBytes    *int `json:"rx_bytes"`
-		RxBytesLo  *int `json:"rx_bytes_lo"`
-		RxPackets  *int `json:"rx_packets"`
-		TxPackets  *int `json:"tx_packets"`
-		Collisions *int `json:"collisions"`
-		RxErrors   *int `json:"rx_errors"`
-		RxBytesHi  *int `json:"rx_bytes_hi"`
 		TxBytesLo  *int `json:"tx_bytes_lo"`
+		TxErrors   *int `json:"tx_errors"`
+		TxPackets  *int `json:"tx_packets"`
 	} `json:"statistics"`
 }
 

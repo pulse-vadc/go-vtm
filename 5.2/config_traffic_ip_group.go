@@ -14,7 +14,9 @@ type TrafficIpGroup struct {
 }
 
 func (vtm VirtualTrafficManager) GetTrafficIpGroup(name string) (*TrafficIpGroup, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetTrafficIpGroup(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/traffic_ip_groups/" + name)
 	data, ok := conn.get()
 	if ok != true {

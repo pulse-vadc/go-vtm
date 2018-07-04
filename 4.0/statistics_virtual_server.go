@@ -10,67 +10,67 @@ import (
 
 type VirtualServerStatistics struct {
 	Statistics struct {
+		BwLimitBytesDrop     *int    `json:"bw_limit_bytes_drop"`
+		BwLimitBytesDropHi   *int    `json:"bw_limit_bytes_drop_hi"`
 		BwLimitBytesDropLo   *int    `json:"bw_limit_bytes_drop_lo"`
-		GzipBytesSavedHi     *int    `json:"gzip_bytes_saved_hi"`
+		BwLimitPktsDrop      *int    `json:"bw_limit_pkts_drop"`
 		BwLimitPktsDropHi    *int    `json:"bw_limit_pkts_drop_hi"`
-		GzipBytesSaved       *int    `json:"gzip_bytes_saved"`
-		HttpRewriteCookie    *int    `json:"http_rewrite_cookie"`
-		CurrentConn          *int    `json:"current_conn"`
-		TotalHttpRequestsLo  *int    `json:"total_http_requests_lo"`
-		TotalDgram           *int    `json:"total_dgram"`
-		TotalRequestsHi      *int    `json:"total_requests_hi"`
-		SipTotalCalls        *int    `json:"sip_total_calls"`
+		BwLimitPktsDropLo    *int    `json:"bw_limit_pkts_drop_lo"`
+		BytesIn              *int    `json:"bytes_in"`
 		BytesInHi            *int    `json:"bytes_in_hi"`
-		ConnectionFailures   *int    `json:"connection_failures"`
+		BytesInLo            *int    `json:"bytes_in_lo"`
+		BytesOut             *int    `json:"bytes_out"`
 		BytesOutHi           *int    `json:"bytes_out_hi"`
-		TotalHttpRequestsHi  *int    `json:"total_http_requests_hi"`
+		BytesOutLo           *int    `json:"bytes_out_lo"`
+		CertStatusRequests   *int    `json:"cert_status_requests"`
+		CertStatusResponses  *int    `json:"cert_status_responses"`
 		ConnectTimedOut      *int    `json:"connect_timed_out"`
+		ConnectionErrors     *int    `json:"connection_errors"`
+		ConnectionFailures   *int    `json:"connection_failures"`
+		CurrentConn          *int    `json:"current_conn"`
+		DataTimedOut         *int    `json:"data_timed_out"`
+		DirectReplies        *int    `json:"direct_replies"`
+		Discard              *int    `json:"discard"`
+		Gzip                 *int    `json:"gzip"`
+		GzipBytesSaved       *int    `json:"gzip_bytes_saved"`
+		GzipBytesSavedHi     *int    `json:"gzip_bytes_saved_hi"`
+		GzipBytesSavedLo     *int    `json:"gzip_bytes_saved_lo"`
+		HttpCacheHitRate     *int    `json:"http_cache_hit_rate"`
+		HttpCacheHits        *int    `json:"http_cache_hits"`
+		HttpCacheLookups     *int    `json:"http_cache_lookups"`
+		HttpRewriteCookie    *int    `json:"http_rewrite_cookie"`
 		HttpRewriteLocation  *int    `json:"http_rewrite_location"`
+		KeepaliveTimedOut    *int    `json:"keepalive_timed_out"`
 		MaxConn              *int    `json:"max_conn"`
 		MaxDurationTimedOut  *int    `json:"max_duration_timed_out"`
-		TotalHttp2RequestsHi *int    `json:"total_http2_requests_hi"`
-		Port                 *int    `json:"port"`
-		PktsInHi             *int    `json:"pkts_in_hi"`
-		TotalHttp2Requests   *int    `json:"total_http2_requests"`
-		TotalHttp2RequestsLo *int    `json:"total_http2_requests_lo"`
-		GzipBytesSavedLo     *int    `json:"gzip_bytes_saved_lo"`
-		CertStatusResponses  *int    `json:"cert_status_responses"`
-		BwLimitBytesDrop     *int    `json:"bw_limit_bytes_drop"`
-		KeepaliveTimedOut    *int    `json:"keepalive_timed_out"`
-		TotalUdpUnreachables *int    `json:"total_udp_unreachables"`
-		DirectReplies        *int    `json:"direct_replies"`
-		HttpCacheHitRate     *int    `json:"http_cache_hit_rate"`
-		PktsOutHi            *int    `json:"pkts_out_hi"`
-		PktsOut              *int    `json:"pkts_out"`
-		TotalTcpReset        *int    `json:"total_tcp_reset"`
-		BwLimitPktsDrop      *int    `json:"bw_limit_pkts_drop"`
-		UdpTimedOut          *int    `json:"udp_timed_out"`
-		TotalConn            *int    `json:"total_conn"`
-		Gzip                 *int    `json:"gzip"`
-		TotalHttp1RequestsLo *int    `json:"total_http1_requests_lo"`
-		BytesOut             *int    `json:"bytes_out"`
-		TotalRequests        *int    `json:"total_requests"`
-		BytesIn              *int    `json:"bytes_in"`
-		TotalHttpRequests    *int    `json:"total_http_requests"`
-		TotalHttp1RequestsHi *int    `json:"total_http1_requests_hi"`
-		HttpCacheLookups     *int    `json:"http_cache_lookups"`
-		TotalRequestsLo      *int    `json:"total_requests_lo"`
-		HttpCacheHits        *int    `json:"http_cache_hits"`
-		SipRejectedRequests  *int    `json:"sip_rejected_requests"`
-		BwLimitPktsDropLo    *int    `json:"bw_limit_pkts_drop_lo"`
-		DataTimedOut         *int    `json:"data_timed_out"`
-		BytesOutLo           *int    `json:"bytes_out_lo"`
-		TotalHttp1Requests   *int    `json:"total_http1_requests"`
-		Protocol             *string `json:"protocol"`
 		PktsIn               *int    `json:"pkts_in"`
-		ConnectionErrors     *int    `json:"connection_errors"`
-		CertStatusRequests   *int    `json:"cert_status_requests"`
+		PktsInHi             *int    `json:"pkts_in_hi"`
 		PktsInLo             *int    `json:"pkts_in_lo"`
-		ProcessingTimedOut   *int    `json:"processing_timed_out"`
+		PktsOut              *int    `json:"pkts_out"`
+		PktsOutHi            *int    `json:"pkts_out_hi"`
 		PktsOutLo            *int    `json:"pkts_out_lo"`
-		BwLimitBytesDropHi   *int    `json:"bw_limit_bytes_drop_hi"`
-		Discard              *int    `json:"discard"`
-		BytesInLo            *int    `json:"bytes_in_lo"`
+		Port                 *int    `json:"port"`
+		ProcessingTimedOut   *int    `json:"processing_timed_out"`
+		Protocol             *string `json:"protocol"`
+		SipRejectedRequests  *int    `json:"sip_rejected_requests"`
+		SipTotalCalls        *int    `json:"sip_total_calls"`
+		TotalConn            *int    `json:"total_conn"`
+		TotalDgram           *int    `json:"total_dgram"`
+		TotalHttp1Requests   *int    `json:"total_http1_requests"`
+		TotalHttp1RequestsHi *int    `json:"total_http1_requests_hi"`
+		TotalHttp1RequestsLo *int    `json:"total_http1_requests_lo"`
+		TotalHttp2Requests   *int    `json:"total_http2_requests"`
+		TotalHttp2RequestsHi *int    `json:"total_http2_requests_hi"`
+		TotalHttp2RequestsLo *int    `json:"total_http2_requests_lo"`
+		TotalHttpRequests    *int    `json:"total_http_requests"`
+		TotalHttpRequestsHi  *int    `json:"total_http_requests_hi"`
+		TotalHttpRequestsLo  *int    `json:"total_http_requests_lo"`
+		TotalRequests        *int    `json:"total_requests"`
+		TotalRequestsHi      *int    `json:"total_requests_hi"`
+		TotalRequestsLo      *int    `json:"total_requests_lo"`
+		TotalTcpReset        *int    `json:"total_tcp_reset"`
+		TotalUdpUnreachables *int    `json:"total_udp_unreachables"`
+		UdpTimedOut          *int    `json:"udp_timed_out"`
 	} `json:"statistics"`
 }
 

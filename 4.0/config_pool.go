@@ -14,7 +14,9 @@ type Pool struct {
 }
 
 func (vtm VirtualTrafficManager) GetPool(name string) (*Pool, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetPool(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/pools/" + name + "?expert_keys=auto_scaling/extraargs")
 	data, ok := conn.get()
 	if ok != true {

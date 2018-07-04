@@ -14,7 +14,9 @@ type Monitor struct {
 }
 
 func (vtm VirtualTrafficManager) GetMonitor(name string) (*Monitor, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetMonitor(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/monitors/" + name)
 	data, ok := conn.get()
 	if ok != true {

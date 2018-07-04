@@ -10,9 +10,9 @@ import (
 
 type RuleAuthenticatorStatistics struct {
 	Statistics struct {
-		Passes   *int `json:"passes"`
 		Errors   *int `json:"errors"`
 		Fails    *int `json:"fails"`
+		Passes   *int `json:"passes"`
 		Requests *int `json:"requests"`
 	} `json:"statistics"`
 }

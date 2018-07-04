@@ -14,7 +14,9 @@ type AptimizerProfile struct {
 }
 
 func (vtm VirtualTrafficManager) GetAptimizerProfile(name string) (*AptimizerProfile, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetAptimizerProfile(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/aptimizer/profiles/" + name)
 	data, ok := conn.get()
 	if ok != true {

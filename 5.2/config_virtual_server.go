@@ -14,7 +14,9 @@ type VirtualServer struct {
 }
 
 func (vtm VirtualTrafficManager) GetVirtualServer(name string) (*VirtualServer, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetVirtualServer(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/virtual_servers/" + name)
 	data, ok := conn.get()
 	if ok != true {

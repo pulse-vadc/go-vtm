@@ -14,7 +14,9 @@ type Action struct {
 }
 
 func (vtm VirtualTrafficManager) GetAction(name string) (*Action, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetAction(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/actions/" + name)
 	data, ok := conn.get()
 	if ok != true {

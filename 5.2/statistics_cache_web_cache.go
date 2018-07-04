@@ -10,27 +10,27 @@ import (
 
 type CacheWebCacheStatistics struct {
 	Statistics struct {
-		LookupsLo                *int `json:"lookups_lo"`
-		HitsLo                   *int `json:"hits_lo"`
-		HitRate                  *int `json:"hit_rate"`
-		UrlStoreTotalFrees       *int `json:"url_store_total_frees"`
-		Oldest                   *int `json:"oldest"`
-		UrlStoreAllocated        *int `json:"url_store_allocated"`
-		MemUsed                  *int `json:"mem_used"`
-		UrlStoreTotalFailures    *int `json:"url_store_total_failures"`
-		LookupsHi                *int `json:"lookups_hi"`
-		MissesHi                 *int `json:"misses_hi"`
-		UrlStoreTotalAllocations *int `json:"url_store_total_allocations"`
 		Entries                  *int `json:"entries"`
-		MissesLo                 *int `json:"misses_lo"`
+		HitRate                  *int `json:"hit_rate"`
 		Hits                     *int `json:"hits"`
-		Misses                   *int `json:"misses"`
-		Lookups                  *int `json:"lookups"`
 		HitsHi                   *int `json:"hits_hi"`
-		UrlStoreSize             *int `json:"url_store_size"`
+		HitsLo                   *int `json:"hits_lo"`
+		Lookups                  *int `json:"lookups"`
+		LookupsHi                *int `json:"lookups_hi"`
+		LookupsLo                *int `json:"lookups_lo"`
 		MaxEntries               *int `json:"max_entries"`
 		MemMaximum               *int `json:"mem_maximum"`
+		MemUsed                  *int `json:"mem_used"`
+		Misses                   *int `json:"misses"`
+		MissesHi                 *int `json:"misses_hi"`
+		MissesLo                 *int `json:"misses_lo"`
+		Oldest                   *int `json:"oldest"`
+		UrlStoreAllocated        *int `json:"url_store_allocated"`
 		UrlStoreFree             *int `json:"url_store_free"`
+		UrlStoreSize             *int `json:"url_store_size"`
+		UrlStoreTotalAllocations *int `json:"url_store_total_allocations"`
+		UrlStoreTotalFailures    *int `json:"url_store_total_failures"`
+		UrlStoreTotalFrees       *int `json:"url_store_total_frees"`
 	} `json:"statistics"`
 }
 

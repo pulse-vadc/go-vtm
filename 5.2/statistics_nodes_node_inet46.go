@@ -11,24 +11,24 @@ import (
 type NodesNodeInet46Statistics struct {
 	Statistics struct {
 		BytesFromNode   *int    `json:"bytes_from_node"`
-		CurrentRequests *int    `json:"current_requests"`
-		NewConn         *int    `json:"new_conn"`
-		CurrentConn     *int    `json:"current_conn"`
-		Errors          *int    `json:"errors"`
-		BytesFromNodeLo *int    `json:"bytes_from_node_lo"`
-		PooledConn      *int    `json:"pooled_conn"`
-		State           *string `json:"state"`
-		IdleConns       *int    `json:"idle_conns"`
-		ResponseMean    *int    `json:"response_mean"`
-		Port            *int    `json:"port"`
-		TotalConn       *int    `json:"total_conn"`
-		BytesToNodeLo   *int    `json:"bytes_to_node_lo"`
-		BytesToNode     *int    `json:"bytes_to_node"`
-		Failures        *int    `json:"failures"`
-		ResponseMin     *int    `json:"response_min"`
-		ResponseMax     *int    `json:"response_max"`
 		BytesFromNodeHi *int    `json:"bytes_from_node_hi"`
+		BytesFromNodeLo *int    `json:"bytes_from_node_lo"`
+		BytesToNode     *int    `json:"bytes_to_node"`
 		BytesToNodeHi   *int    `json:"bytes_to_node_hi"`
+		BytesToNodeLo   *int    `json:"bytes_to_node_lo"`
+		CurrentConn     *int    `json:"current_conn"`
+		CurrentRequests *int    `json:"current_requests"`
+		Errors          *int    `json:"errors"`
+		Failures        *int    `json:"failures"`
+		IdleConns       *int    `json:"idle_conns"`
+		NewConn         *int    `json:"new_conn"`
+		PooledConn      *int    `json:"pooled_conn"`
+		Port            *int    `json:"port"`
+		ResponseMax     *int    `json:"response_max"`
+		ResponseMean    *int    `json:"response_mean"`
+		ResponseMin     *int    `json:"response_min"`
+		State           *string `json:"state"`
+		TotalConn       *int    `json:"total_conn"`
 	} `json:"statistics"`
 }
 

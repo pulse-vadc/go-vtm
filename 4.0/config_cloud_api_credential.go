@@ -14,7 +14,9 @@ type CloudApiCredential struct {
 }
 
 func (vtm VirtualTrafficManager) GetCloudApiCredential(name string) (*CloudApiCredential, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetCloudApiCredential(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/cloud_api_credentials/" + name)
 	data, ok := conn.get()
 	if ok != true {

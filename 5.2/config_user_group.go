@@ -14,7 +14,9 @@ type UserGroup struct {
 }
 
 func (vtm VirtualTrafficManager) GetUserGroup(name string) (*UserGroup, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetUserGroup(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/user_groups/" + name)
 	data, ok := conn.get()
 	if ok != true {

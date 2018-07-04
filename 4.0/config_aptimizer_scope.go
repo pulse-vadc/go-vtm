@@ -14,7 +14,9 @@ type AptimizerScope struct {
 }
 
 func (vtm VirtualTrafficManager) GetAptimizerScope(name string) (*AptimizerScope, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetAptimizerScope(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/aptimizer/scopes/" + name)
 	data, ok := conn.get()
 	if ok != true {

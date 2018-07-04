@@ -10,9 +10,9 @@ import (
 
 type CloudApiCredentialStatistics struct {
 	Statistics struct {
+		NodeCreations  *int `json:"node_creations"`
 		NodeDeletions  *int `json:"node_deletions"`
 		StatusRequests *int `json:"status_requests"`
-		NodeCreations  *int `json:"node_creations"`
 	} `json:"statistics"`
 }
 

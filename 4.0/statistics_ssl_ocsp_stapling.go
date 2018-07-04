@@ -11,12 +11,12 @@ import (
 type SslOcspStaplingStatistics struct {
 	Statistics struct {
 		CacheCount   *int `json:"cache_count"`
-		SuccessCount *int `json:"success_count"`
-		GoodCount    *int `json:"good_count"`
-		UnknownCount *int `json:"unknown_count"`
-		RevokedCount *int `json:"revoked_count"`
 		Count        *int `json:"count"`
 		FailureCount *int `json:"failure_count"`
+		GoodCount    *int `json:"good_count"`
+		RevokedCount *int `json:"revoked_count"`
+		SuccessCount *int `json:"success_count"`
+		UnknownCount *int `json:"unknown_count"`
 	} `json:"statistics"`
 }
 

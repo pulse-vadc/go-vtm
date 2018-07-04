@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListKerberosKrb5Confs() (*[]string, *vtmErrorRe
 }
 
 func (vtm VirtualTrafficManager) GetKerberosKrb5Conf(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetKerberosKrb5Conf(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/kerberos/krb5confs/" + name)
 	data, ok := conn.get()
 	if ok != true {

@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListServicediscoverys() (*[]string, *vtmErrorRe
 }
 
 func (vtm VirtualTrafficManager) GetServicediscovery(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetServicediscovery(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/servicediscovery/" + name)
 	data, ok := conn.get()
 	if ok != true {

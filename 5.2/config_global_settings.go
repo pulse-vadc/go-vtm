@@ -14,7 +14,6 @@ type GlobalSettings struct {
 }
 
 func (vtm VirtualTrafficManager) GetGlobalSettings() (*GlobalSettings, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/global_settings")
 	data, ok := conn.get()
 	if ok != true {

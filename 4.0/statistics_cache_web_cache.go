@@ -10,27 +10,27 @@ import (
 
 type CacheWebCacheStatistics struct {
 	Statistics struct {
-		HitsHi                   *int `json:"hits_hi"`
-		LookupsHi                *int `json:"lookups_hi"`
-		LookupsLo                *int `json:"lookups_lo"`
-		MemMaximum               *int `json:"mem_maximum"`
-		HitRate                  *int `json:"hit_rate"`
-		Misses                   *int `json:"misses"`
-		MissesHi                 *int `json:"misses_hi"`
-		UrlStoreTotalFailures    *int `json:"url_store_total_failures"`
 		Entries                  *int `json:"entries"`
+		HitRate                  *int `json:"hit_rate"`
+		Hits                     *int `json:"hits"`
+		HitsHi                   *int `json:"hits_hi"`
 		HitsLo                   *int `json:"hits_lo"`
 		Lookups                  *int `json:"lookups"`
-		UrlStoreTotalAllocations *int `json:"url_store_total_allocations"`
-		UrlStoreSize             *int `json:"url_store_size"`
+		LookupsHi                *int `json:"lookups_hi"`
+		LookupsLo                *int `json:"lookups_lo"`
+		MaxEntries               *int `json:"max_entries"`
+		MemMaximum               *int `json:"mem_maximum"`
+		MemUsed                  *int `json:"mem_used"`
+		Misses                   *int `json:"misses"`
+		MissesHi                 *int `json:"misses_hi"`
 		MissesLo                 *int `json:"misses_lo"`
 		Oldest                   *int `json:"oldest"`
-		UrlStoreFree             *int `json:"url_store_free"`
 		UrlStoreAllocated        *int `json:"url_store_allocated"`
-		MaxEntries               *int `json:"max_entries"`
+		UrlStoreFree             *int `json:"url_store_free"`
+		UrlStoreSize             *int `json:"url_store_size"`
+		UrlStoreTotalAllocations *int `json:"url_store_total_allocations"`
+		UrlStoreTotalFailures    *int `json:"url_store_total_failures"`
 		UrlStoreTotalFrees       *int `json:"url_store_total_frees"`
-		Hits                     *int `json:"hits"`
-		MemUsed                  *int `json:"mem_used"`
 	} `json:"statistics"`
 }
 

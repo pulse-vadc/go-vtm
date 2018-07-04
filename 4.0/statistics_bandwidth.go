@@ -10,17 +10,17 @@ import (
 
 type BandwidthStatistics struct {
 	Statistics struct {
-		Maximum     *int `json:"maximum"`
-		PktsDropHi  *int `json:"pkts_drop_hi"`
-		BytesDropHi *int `json:"bytes_drop_hi"`
-		Guarantee   *int `json:"guarantee"`
-		BytesOutLo  *int `json:"bytes_out_lo"`
-		PktsDrop    *int `json:"pkts_drop"`
-		BytesDropLo *int `json:"bytes_drop_lo"`
-		PktsDropLo  *int `json:"pkts_drop_lo"`
-		BytesOutHi  *int `json:"bytes_out_hi"`
 		BytesDrop   *int `json:"bytes_drop"`
+		BytesDropHi *int `json:"bytes_drop_hi"`
+		BytesDropLo *int `json:"bytes_drop_lo"`
 		BytesOut    *int `json:"bytes_out"`
+		BytesOutHi  *int `json:"bytes_out_hi"`
+		BytesOutLo  *int `json:"bytes_out_lo"`
+		Guarantee   *int `json:"guarantee"`
+		Maximum     *int `json:"maximum"`
+		PktsDrop    *int `json:"pkts_drop"`
+		PktsDropHi  *int `json:"pkts_drop_hi"`
+		PktsDropLo  *int `json:"pkts_drop_lo"`
 	} `json:"statistics"`
 }
 

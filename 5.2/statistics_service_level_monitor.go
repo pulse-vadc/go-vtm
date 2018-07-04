@@ -10,14 +10,14 @@ import (
 
 type ServiceLevelMonitorStatistics struct {
 	Statistics struct {
-		ResponseMean *int    `json:"response_mean"`
-		CurrentConns *int    `json:"current_conns"`
-		TotalConn    *int    `json:"total_conn"`
 		Conforming   *int    `json:"conforming"`
-		TotalNonConf *int    `json:"total_non_conf"`
-		ResponseMin  *int    `json:"response_min"`
-		ResponseMax  *int    `json:"response_max"`
+		CurrentConns *int    `json:"current_conns"`
 		IsOK         *string `json:"is_o_k"`
+		ResponseMax  *int    `json:"response_max"`
+		ResponseMean *int    `json:"response_mean"`
+		ResponseMin  *int    `json:"response_min"`
+		TotalConn    *int    `json:"total_conn"`
+		TotalNonConf *int    `json:"total_non_conf"`
 	} `json:"statistics"`
 }
 

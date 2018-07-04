@@ -1,3 +1,6 @@
+// Copyright (C) 2018, Pulse Secure, LLC. 
+// Licensed under the terms of the MPL 2.0. See LICENSE file for details.
+
 # go-vtm
 
 To import the library:
@@ -15,8 +18,8 @@ To connect to a Virtual Traffic Manager instance via a Services Director proxy:
 trafficManager := vtm.NewVirtualTrafficManager("https://sd1:8100/api/tmcm/2.5/instance/vtm1", "sd_admin", "SD_P@55w0rD!")
 ```
 
-## Single-occurance resources
-Some resources, for example global settings, occur as single occurances.  These resources
+## Single-occurrence resources
+Some resources, for example global settings, occur as single occurrences.  These resources
 support the Get<*ResourceType*> function and the <*Instance*>.Apply() method.  NB. values are 
 stored with pointers.
 ```go
@@ -27,7 +30,7 @@ globalSettings.Apply()
 ```
 NB. settings will not be applied until the Apply() method is called.
 
-## Multiple-occurance resources
+## Multiple-occurrence resources
 Most resource types, for example pools, virtual servers and TrafficScript rules, have many instances.
 These resources support the List<*ResourceType*>s, Get<*ResourceType*>, New<*ResourceType*> and Delete<*ResourceType*>
 functions.
@@ -49,7 +52,7 @@ myVs, err := trafficManager.GetVirtualServer("my_virtual_server")
 myRule, err := trafficManager.GetRule("my_trafficscript_rule")
 ```
 
-### Reading values from a configuation object
+### Reading values from a configuration object
 Some configuration objects are data structures (ie. JSON-based in the API) whilst some 
 are text-based.  Get<*ResourceType*>() calls return structures or strings respectively.
 
@@ -109,14 +112,14 @@ err := trafficManager.DeleteRule("new_rule")
 Virtual Traffic Manager provides many read-only counters and statistics.  These can be accessed 
 using the Get<*Resource*>Statistics functions.
 
-Functions for stats on single-occurance objects take no arguments:
+Functions for stats on single-occurrence objects take no arguments:
 ```go
 globalStats, err := trafficManager.GetGlobalsStatistics()
 fmt.Printf("Data memory usage: %d\n", globalStats.DataMemoryUsage)
 fmt.Printf("Uptime: %d\n", globalStats.UpTime)
 ```
 
-Functions for stats on multiple-occurance objects take an object name as the only argument:
+Functions for stats on multiple-occurrence objects take an object name as the only argument:
 ```go
 vsStats, err := trafficManager.GetVirtualServersStatistics("my_vs")
 fmt.Printf("Bytes In: %d\n", vsStats.BytesIn)
@@ -138,7 +141,7 @@ fmt.Printf("vTM UUID: %s\n", vtmInformation.Information.Uuid)
 
 ## Errors
 All functions/methods will return a pointer to an error as either their second or only return value.
-If this is a nil pointer, no error occured.  If not, an error object will be available:
+If this is a nil pointer, no error occurred.  If not, an error object will be available:
 ```go
 myVs, err := trafficManager.GetVirtualServer("my_non_existent_vs")
 if err != nil {

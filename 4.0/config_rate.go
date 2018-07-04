@@ -14,7 +14,9 @@ type Rate struct {
 }
 
 func (vtm VirtualTrafficManager) GetRate(name string) (*Rate, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetRate(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/rate/" + name)
 	data, ok := conn.get()
 	if ok != true {

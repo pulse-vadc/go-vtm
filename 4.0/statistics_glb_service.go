@@ -10,9 +10,9 @@ import (
 
 type GlbServiceStatistics struct {
 	Statistics struct {
-		Unmodified *int `json:"unmodified"`
 		Discarded  *int `json:"discarded"`
 		Responses  *int `json:"responses"`
+		Unmodified *int `json:"unmodified"`
 	} `json:"statistics"`
 }
 

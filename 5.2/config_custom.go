@@ -14,7 +14,9 @@ type Custom struct {
 }
 
 func (vtm VirtualTrafficManager) GetCustom(name string) (*Custom, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetCustom(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/custom/" + name)
 	data, ok := conn.get()
 	if ok != true {

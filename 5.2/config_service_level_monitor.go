@@ -14,7 +14,9 @@ type ServiceLevelMonitor struct {
 }
 
 func (vtm VirtualTrafficManager) GetServiceLevelMonitor(name string) (*ServiceLevelMonitor, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetServiceLevelMonitor(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/service_level_monitors/" + name)
 	data, ok := conn.get()
 	if ok != true {

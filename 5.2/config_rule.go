@@ -29,6 +29,9 @@ func (vtm VirtualTrafficManager) ListRules() (*[]string, *vtmErrorResponse) {
 }
 
 func (vtm VirtualTrafficManager) GetRule(name string) (string, *vtmErrorResponse) {
+	if name == "" {
+		panic("Provided an empty \"name\" parameter to VirtualTrafficManager.GetRule(name)")
+	}
 	conn := vtm.connector.getChildConnector("/tm/5.2/config/active/rules/" + name)
 	data, ok := conn.get()
 	if ok != true {

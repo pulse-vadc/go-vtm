@@ -14,7 +14,6 @@ type Security struct {
 }
 
 func (vtm VirtualTrafficManager) GetSecurity() (*Security, *vtmErrorResponse) {
-	// 'name' automatically gets escaped
 	conn := vtm.connector.getChildConnector("/tm/4.0/config/active/security")
 	data, ok := conn.get()
 	if ok != true {
