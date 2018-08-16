@@ -3,20 +3,18 @@
 
 package vtm
 
-import (
-	"net/url"
-	"os"
-)
+import "os"
 
 var testTm *VirtualTrafficManager
 
 func init() {
 	var contactable bool
-	var err *url.Error
+	var err *vtmErrorResponse
 	testTm, contactable, err = NewVirtualTrafficManager(
 		os.Getenv("VTM_BASE_URL"),
 		os.Getenv("VTM_USERNAME"),
 		os.Getenv("VTM_PASSWORD"),
+		false,
 		false,
 	)
 	if contactable == false {
