@@ -26,7 +26,7 @@ func TestNewVirtualTrafficManager(t *testing.T) {
 	}
 
 	for _, conn := range connectionData {
-		_, reachable, _ := NewVirtualTrafficManager(conn.url, conn.username, conn.password, false)
+		_, reachable, _ := NewVirtualTrafficManager(conn.url, conn.username, conn.password, false, true)
 		if reachable != conn.reachable {
 			t.Errorf("Reachability Error: %s with %s:%s - expected %t", conn.url, conn.username, conn.password, conn.reachable)
 		}

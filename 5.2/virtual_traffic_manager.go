@@ -5,8 +5,11 @@ package vtm
 
 import (
 	"crypto/tls"
+	"encoding/json"
 	"io"
+	"log"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 	"strings"
 	"time"
@@ -27,9 +30,9 @@ type vtmObjectChildren struct {
 }
 
 type vtmErrorResponse struct {
-	ErrorId   string `json:"error_id"`
-	ErrorText string `json:"error_text"`
-	ErrorInfo string `json:"error_info"`
+	ErrorId   string      `json:"error_id"`
+	ErrorText string      `json:"error_text"`
+	ErrorInfo interface{} `json:"error_info"`
 }
 
 //********************************************
@@ -44,20 +47,29 @@ type vtmConnector struct {
 	contentType   string
 	expectedCodes map[string][]int
 	readOnly      bool
+	verbose       bool
 }
 
 func (c vtmConnector) getChildConnector(path string) *vtmConnector {
 	newUrl := c.url + path
-	conn := newConnector(newUrl, c.username, c.password, c.verifySslCert)
+	conn := newConnector(newUrl, c.username, c.password, c.verifySslCert, c.verbose)
 	return conn
 }
 
 func (c vtmConnector) get() (io.ReadCloser, bool) {
 	request, err := http.NewRequest("GET", c.url, nil)
+	if c.verbose {
+		reqDump, _ := httputil.DumpRequestOut(request, false)
+		log.Printf("REST GET REQUEST: %s\n", reqDump)
+	}
 	request.SetBasicAuth(c.username, c.password)
 	response, err := c.client.Do(request)
 	if err != nil {
 		panic(err)
+	}
+	if c.verbose {
+		resDump, _ := httputil.DumpResponse(response, true)
+		log.Printf("REST GET RESPONSE: %q\n", resDump)
 	}
 	if response.StatusCode == 200 {
 		return response.Body, true
@@ -73,11 +85,19 @@ func (c vtmConnector) put(body string, isTextObject bool) (io.ReadCloser, bool) 
 		contentType = "application/json"
 	}
 	request, err := http.NewRequest("PUT", c.url, strings.NewReader(body))
-	request.SetBasicAuth(c.username, c.password)
 	request.Header.Set("Content-Type", contentType)
+	if c.verbose {
+		reqDump, _ := httputil.DumpRequestOut(request, true)
+		log.Printf("REST PUT REQUEST: %q\n", reqDump)
+	}
+	request.SetBasicAuth(c.username, c.password)
 	response, err := c.client.Do(request)
 	if err != nil {
 		panic(err)
+	}
+	if c.verbose {
+		resDump, _ := httputil.DumpResponse(response, true)
+		log.Printf("REST PUT RESPONSE: %q\n", resDump)
 	}
 	if response.StatusCode >= 200 && response.StatusCode < 300 {
 		return response.Body, true
@@ -87,10 +107,18 @@ func (c vtmConnector) put(body string, isTextObject bool) (io.ReadCloser, bool) 
 
 func (c vtmConnector) delete() (io.ReadCloser, bool) {
 	request, err := http.NewRequest("DELETE", c.url, nil)
+	if c.verbose {
+		reqDump, _ := httputil.DumpRequestOut(request, false)
+		log.Printf("REST DELETE REQUEST: %s\n", reqDump)
+	}
 	request.SetBasicAuth(c.username, c.password)
 	response, err := c.client.Do(request)
 	if err != nil {
 		panic(err)
+	}
+	if c.verbose {
+		resDump, _ := httputil.DumpResponse(response, false)
+		log.Printf("REST DELETE RESPONSE: %s\n", resDump)
 	}
 	if response.StatusCode == 204 {
 		return response.Body, true
@@ -98,16 +126,18 @@ func (c vtmConnector) delete() (io.ReadCloser, bool) {
 	return response.Body, false
 }
 
-func newConnector(url, username, password string, verifySslCert bool) *vtmConnector {
-	conn := new(vtmConnector)
-	conn.url = url
-	conn.username = username
-	conn.password = password
-	conn.verifySslCert = verifySslCert
+func newConnector(url, username, password string, verifySslCert, verbose bool) *vtmConnector {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: !verifySslCert},
 	}
-	conn.client = &http.Client{Transport: tr, Timeout: 3 * time.Second}
+	conn := &vtmConnector{
+		url:           url,
+		username:      username,
+		password:      password,
+		verifySslCert: verifySslCert,
+		verbose:       verbose,
+		client:        &http.Client{Transport: tr, Timeout: 3 * time.Second},
+	}
 	return conn
 }
 
@@ -118,19 +148,28 @@ type VirtualTrafficManager struct {
 	connector *vtmConnector
 }
 
-func (tm VirtualTrafficManager) testConnectivityOnce() (ok bool, err *url.Error) {
+func (tm VirtualTrafficManager) testConnectivityOnce() (ok bool, err *vtmErrorResponse) {
 	ok = false
 	defer func() {
 		if r := recover(); r != nil {
-			err = r.(*url.Error)
+			rue := r.(*url.Error)
+			err = &vtmErrorResponse{
+				ErrorId:   rue.Err.Error(),
+				ErrorText: rue.Err.Error(),
+			}
 		}
 	}()
-	_, ok = tm.connector.get()
+	data, ok := tm.connector.get()
+	if ok != true {
+		object := new(vtmErrorResponse)
+		json.NewDecoder(data).Decode(object)
+		return false, object
+	}
 	return ok, nil
 }
 
-func (tm VirtualTrafficManager) testConnectivity() (bool, *url.Error) {
-	var err *url.Error
+func (tm VirtualTrafficManager) testConnectivity() (bool, *vtmErrorResponse) {
+	var err *vtmErrorResponse
 	for i := 1; i <= 3; i++ {
 		var ok bool
 		ok, err = tm.testConnectivityOnce()
@@ -146,29 +185,32 @@ func (tm VirtualTrafficManager) testConnectivity() (bool, *url.Error) {
 NewVirtualTrafficManager creates an instance of VirtualTrafficManager and returns it, together with its reachability status.
 
 Params:
-	url		(string) The base URL of the target vTM, upto, but not including, the API verion portion.
-				eg.	For direct connection to a vTM:
-						https://my-vtm-1:9070/api
-					For connection via a Services Director proxy:
-						https://my-sd-1:8100/api/tmcm/<VER>/instances/<INSTANCE_ID>
-	username	(string) Username to use for the connection.
-				ie.	For direct connection to a vTM:
-						Username on vTM with sufficient permissions to perform required operations.
-					For connections via a Services Director proxy:
-						Username on ServicesDirector with sufficient permissions to perform required operations.
-	password	(string) Password to use for the connection.
-				ie.	For direct connection to a vTM:
-						vTM password for the user specified in the 'username' parameter.
-					For connections via a Services Director proxy:
-						Services Director password for the user specified in the 'username' parameter.
+	url				(string) The base URL of the target vTM, upto, but not including, the API verion portion.
+						eg.	For direct connection to a vTM:
+							https://my-vtm-1:9070/api
+						For connection via a Services Director proxy:
+							https://my-sd-1:8100/api/tmcm/<VER>/instances/<INSTANCE_ID>
+	username		(string) Username to use for the connection.
+						ie.	For direct connection to a vTM:
+							Username on vTM with sufficient permissions to perform required operations.
+						For connections via a Services Director proxy:
+							Username on ServicesDirector with sufficient permissions to perform required operations.
+	password		(string) Password to use for the connection.
+						ie.	For direct connection to a vTM:
+							vTM password for the user specified in the 'username' parameter.
+						For connections via a Services Director proxy:
+							Services Director password for the user specified in the 'username' parameter.
+	verifySslCert	(bool) Whether to perform verification on on the SSL certificate presented by the RESP API.
+	verbose			(bool) Whether to write verbose logs to STDOUT.
 
 Returns:
 	*VirtualTrafficManager		The newly-instantiated object
 	bool						true if the target vTM is reachable with the provided parameters, else false
+	*vtmErrorResponse			An error object if failed to create new VirtualTrafficManager, else nil
 */
-func NewVirtualTrafficManager(url, username, password string, verifySslCert bool) (*VirtualTrafficManager, bool, *url.Error) {
+func NewVirtualTrafficManager(url, username, password string, verifySslCert, verbose bool) (*VirtualTrafficManager, bool, *vtmErrorResponse) {
 	vtm := new(VirtualTrafficManager)
-	conn := newConnector(url, username, password, verifySslCert)
+	conn := newConnector(url, username, password, verifySslCert, verbose)
 	vtm.connector = conn
 	contactable, contactErr := vtm.testConnectivity()
 	return vtm, contactable, contactErr
