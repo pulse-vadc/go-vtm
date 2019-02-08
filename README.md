@@ -5,17 +5,17 @@
 
 To import the library:
 ```go
-import "github.com/pulse/vtm"
+import vtm "github.com/pulse-vadc/go-vtm/4.0"
 ```
 
 To connect directly to a Virtual Traffic Manager instance:
 ```go
-trafficManager := vtm.NewVirtualTrafficManager("https://vtm1:9070/api", "admin", "P@55w0rD!")
+trafficManager := vtm.NewVirtualTrafficManager("https://vtm1:9070/api", "admin", "P@55w0rD!", true, true)
 ```
 
 To connect to a Virtual Traffic Manager instance via a Services Director proxy:
 ```go
-trafficManager := vtm.NewVirtualTrafficManager("https://sd1:8100/api/tmcm/2.5/instance/vtm1", "sd_admin", "SD_P@55w0rD!")
+trafficManager := vtm.NewVirtualTrafficManager("https://sd1:8100/api/tmcm/2.5/instance/vtm1", "sd_admin", "SD_P@55w0rD!", true, true)
 ```
 
 ## Single-occurrence resources
