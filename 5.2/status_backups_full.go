@@ -1,4 +1,4 @@
-// Copyright (C) 2018, Pulse Secure, LLC. 
+// Copyright (C) 2018-2019, Pulse Secure, LLC.
 // Licensed under the terms of the MPL 2.0. See LICENSE file for details.
 
 // Go library for Pulse Virtual Traffic Manager REST version 4.0.
@@ -15,7 +15,7 @@ type SystemBackupsFull struct {
 
 func (vtm VirtualTrafficManager) GetSystemBackupsFull(name string) (*SystemBackupsFull, *vtmErrorResponse) {
 	// 'name' automatically gets escaped
-	conn := vtm.connector.getChildConnector("/tm/4.0/status/local_tm/backups/full/" + name)
+	conn := vtm.connector.getChildConnector("/tm/5.2/status/local_tm/backups/full/" + name)
 	data, ok := conn.get()
 	if ok != true {
 		object := new(vtmErrorResponse)
@@ -49,13 +49,13 @@ func (object SystemBackupsFull) Apply() (*SystemBackupsFull, *vtmErrorResponse) 
 
 func (vtm VirtualTrafficManager) NewSystemBackupsFull(name string) *SystemBackupsFull {
 	object := new(SystemBackupsFull)
-	conn := vtm.connector.getChildConnector("/tm/4.0/status/local_tm/backups/full/" + name)
+	conn := vtm.connector.getChildConnector("/tm/5.2/status/local_tm/backups/full/" + name)
 	object.connector = conn
 	return object
 }
 
 func (vtm VirtualTrafficManager) DeleteSystemBackupsFull(name string) *vtmErrorResponse {
-	conn := vtm.connector.getChildConnector("/tm/4.0/status/local_tm/backups/full/" + name)
+	conn := vtm.connector.getChildConnector("/tm/5.2/status/local_tm/backups/full/" + name)
 	data, ok := conn.delete()
 	if ok != true {
 		object := new(vtmErrorResponse)
@@ -66,7 +66,7 @@ func (vtm VirtualTrafficManager) DeleteSystemBackupsFull(name string) *vtmErrorR
 }
 
 func (vtm VirtualTrafficManager) ListSystemBackupsFull() (*[]string, *vtmErrorResponse) {
-	conn := vtm.connector.getChildConnector("/tm/4.0/status/local_tm/backups/full")
+	conn := vtm.connector.getChildConnector("/tm/5.2/status/local_tm/backups/full")
 	data, ok := conn.get()
 	if ok != true {
 		object := new(vtmErrorResponse)
