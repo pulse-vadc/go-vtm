@@ -1,3 +1,3 @@
 module github.com/pulse-vadc/go-vtm
 
-go 1.12
+go 1.17

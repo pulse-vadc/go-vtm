@@ -157,5 +157,5 @@ Note that the ErrorInfo field is only populated in the case of particular errors
 
 ## Copyright and License Acknowledgement
 
-Copyright &copy; 2018, Pulse Secure LLC. Licensed under the terms of the
+Copyright &copy; 2022, Pulse Secure LLC. Licensed under the terms of the
 MPL 2.0. See the LICENSE file for details.

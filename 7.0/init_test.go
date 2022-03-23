@@ -1,9 +1,11 @@
-// Copyright (C) 2018-2019, Pulse Secure, LLC.
+// Copyright (C) 2018-2022, Pulse Secure, LLC.
 // Licensed under the terms of the MPL 2.0. See LICENSE file for details.
 
 package vtm
 
-import "os"
+import (
+	"os"
+)
 
 var testTm *VirtualTrafficManager
 
